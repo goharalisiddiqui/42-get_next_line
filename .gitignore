@@ -1,0 +1,4 @@
+*.txt
+main.c
+*.out
+Makefile
