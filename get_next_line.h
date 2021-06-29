@@ -6,31 +6,29 @@
 /*   By: gsiddiqu <gsiddiqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:45:42 by gsiddiqu          #+#    #+#             */
-/*   Updated: 2021/06/29 15:57:32 by gsiddiqu         ###   ########.fr       */
+/*   Updated: 2021/06/29 16:49:19 by gsiddiqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
 # include <limits.h>
 
-typedef struct th_list
+typedef struct s_vlist
 {
 	int				idt;
 	char			*content;
-	struct th_list	*next;
-}	v_list;
-
-
+	struct s_vlist	*next;
+}	t_vlist;
 
 int		get_next_line(int fd, char **line);
 int		ft_strlen(char *str);
 char	*ft_strdup(const char *s1);
-void	ft_vlstadd(v_list **lst, int id, char *str);
-v_list	*ft_vlstlocdel(v_list **vault, int fd, int ident);
+void	ft_vlstadd(t_vlist **lst, int id, char *str);
+t_vlist	*ft_vlstlocdel(t_vlist **vault, int fd, int ident);
 char	*ft_strchr(const char *s, int c);
 
 #endif

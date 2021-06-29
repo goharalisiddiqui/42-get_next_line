@@ -6,7 +6,7 @@
 /*   By: gsiddiqu <gsiddiqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:48:02 by gsiddiqu          #+#    #+#             */
-/*   Updated: 2021/06/29 15:58:32 by gsiddiqu         ###   ########.fr       */
+/*   Updated: 2021/06/29 16:50:35 by gsiddiqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,15 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-void	ft_vlstadd(v_list **lst, int id, char *str)
+void	ft_vlstadd(t_vlist **lst, int id, char *str)
 {
-	v_list	*elem;
-	v_list	*lastelem;
+	t_vlist	*elem;
+	t_vlist	*lastelem;
 
 	elem = ft_vlstlocdel(lst, id, 0);
 	if (elem == NULL)
 	{
-		elem = malloc(sizeof(v_list));
+		elem = malloc(sizeof(t_vlist));
 		(*elem).idt = id;
 		(*elem).next = NULL;
 		if (*lst == NULL)
@@ -85,14 +85,14 @@ void	ft_vlstadd(v_list **lst, int id, char *str)
 	(*elem).content = ft_strdup(str);
 }
 
-v_list	*ft_vlstlocdel(v_list **lst, int fd, int ident)
+t_vlist	*ft_vlstlocdel(t_vlist **lst, int fd, int ident)
 {
-	v_list	*elem;
-	v_list	*nneighb;
+	t_vlist	*elem;
+	t_vlist	*nneighb;
 
 	if (ident == 1)
 	{
-		elem = ft_vlstlocdel(lst, fd, 1);
+		elem = ft_vlstlocdel(lst, fd, 0);
 		if (elem != NULL)
 		{
 			free((*elem).content);
@@ -106,8 +106,7 @@ v_list	*ft_vlstlocdel(v_list **lst, int fd, int ident)
 		elem = *lst;
 		while (elem != NULL && (*elem).idt != fd)
 			elem = (*elem).next;
-		return elem;
+		return (elem);
 	}
-	return NULL;
+	return (NULL);
 }
-
