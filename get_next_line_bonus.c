@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsiddiqu <gsiddiqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:45:16 by gsiddiqu          #+#    #+#             */
-/*   Updated: 2021/06/30 19:55:12 by gsiddiqu         ###   ########.fr       */
+/*   Updated: 2021/06/30 20:23:58 by gsiddiqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	get_next_line(int fd, char **line)
 	if (flag > -1 && *str != '\0')
 	{
 		rem = ft_strchr(str, '\n');
-		if ((rem == NULL || *(rem + 1)) && ft_vlstlocdel(&vault, fd, 0) != NULL)
+		if ((rem == NULL || !(*(rem + 1))) && ft_vlstlocdel(&vault, fd, 0) != NULL)
 			ft_vlstlocdel(&vault, fd, 1);
 		else if (rem != NULL && ft_strlen(rem) > 1)
 			ft_vlstadd(&vault, fd, ft_strdup(rem + 1));
