@@ -1,4 +1,5 @@
 *.txt
 main.c
-*.out
+*.out*
 Makefile
+testers/
