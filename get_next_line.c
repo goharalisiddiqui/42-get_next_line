@@ -6,7 +6,7 @@
 /*   By: gsiddiqu <gsiddiqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:45:16 by gsiddiqu          #+#    #+#             */
-/*   Updated: 2021/06/30 19:12:20 by gsiddiqu         ###   ########.fr       */
+/*   Updated: 2021/06/30 19:55:12 by gsiddiqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,8 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	return (dst);
 }
 
-int	ft_gnl_reader(char **str, int fd)
+int	ft_gnl_reader(char **str, int fd, char *str2)
 {
-	char	*str2;
 	int		flag;
 	char	*str3;
 
@@ -81,7 +80,7 @@ int	ft_gnl_checker(t_vlist **lst, char **str, int fd)
 		*str = ft_strdup((*elem).content);
 		return (1);
 	}
-	flag = ft_gnl_reader(str, fd);
+	flag = ft_gnl_reader(str, fd, "");
 	if (flag > 0 && flag < BUFFER_SIZE && ft_strchr(*str, '\n') == NULL)
 		flag = 0;
 	if (flag >= 0 && ft_vlstlocdel(lst, fd, 0) != NULL)
@@ -97,17 +96,13 @@ int	get_next_line(int fd, char **line)
 	int				flag;
 
 	flag = ft_gnl_checker(&vault, &str, fd);
-	//printf("STR=%s\n",str);
 	if (flag > -1 && *str != '\0')
 	{
 		rem = ft_strchr(str, '\n');
-		if ((rem == NULL || *(rem + 1) == '\0') && ft_vlstlocdel(&vault, fd, 0) != NULL)
+		if ((rem == NULL || *(rem + 1)) && ft_vlstlocdel(&vault, fd, 0) != NULL)
 			ft_vlstlocdel(&vault, fd, 1);
 		else if (rem != NULL && ft_strlen(rem) > 1)
-		{
 			ft_vlstadd(&vault, fd, ft_strdup(rem + 1));
-			*rem = '\0';
-		}
 		if (rem != NULL)
 			*rem = '\0';
 	}
